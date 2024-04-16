@@ -22,22 +22,12 @@ class Transport
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     #[Assert\NotBlank(message: "could'nt be nul")]
-    /**
-     * @Assert\LessThanOrEqual(
-     *     propertyPath="da",
-     *     message="Date début must be before or equal to Date fin."
-     * )
-     */
+    
     private ?\DateTimeInterface $dd = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     #[Assert\NotBlank(message: "could'nt be nul")]#[Assert\NotBlank]
-    /**
-     * @Assert\GreaterThanOrEqual(
-     *     propertyPath="dd",
-     *     message="Date fin must be after or equal to Date début."
-     * )
-     */
+   
     private ?\DateTimeInterface $da = null;
 
 

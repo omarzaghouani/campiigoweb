@@ -9,7 +9,12 @@
         <!--**********************************
             Content body start
         ***********************************-->
-      
+      <style>
+    /* Change color of specific element by class */
+    .welcome-line-1 {
+        color: black; /* Change color to black */
+    }
+</style>
                 <!-- row -->
           
                     <div class="container">
@@ -17,7 +22,8 @@
                         <div class="form-card2">
                         <div class="card">
                             <div class="card-header">
-                                <h1 class="welcome-line-1">Create new Transport</h1>
+                            
+                                <h1 class="welcome-line-1" style="color: black;">Create new Transport</h1>
                             </div>
               
             {{ include('transport/_form.html.twig') }}
