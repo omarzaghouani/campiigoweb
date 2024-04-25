@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- Ajoutez le script du bouton de connexion Google Sign-In avec la clé API -->
+    <script src="https://apis.google.com/js/platform.js?onload=onLoadCallback"></script>
+    <style>
+        /* Votre style CSS */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            background-image: url('images/background_font.jpeg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease-out; /* Animation d'apparition */
+            text-align: center; /* Centrer le contenu */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            margin-bottom: 20px; /* Ajouter un espace en bas du titre */
+            font-size: 24px; /* Taille de police */
+            color: #333; /* Couleur du texte */
+        }
+
+        /* Styles pour le bouton de connexion */
+        .g-signin2 {
+            margin-top: 20px; /* Espacement entre le titre et le bouton */
+        }
+    </style>
+</head>
+<body>
+    <!-- Contenu HTML -->
+    <div class="login-container">
+    <!-- Inclure le SDK Google Sign-In -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <h1>Se connecter</h1> <!-- Titre centré -->
+        <form action="{{ path('login') }}" method="post">
+            <!-- Champs du formulaire -->
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="password">Mot de passe:</label>
+            <input type="password" id="password" name="password" required>
+            <!-- Bouton de connexion-->
+           <form action="{{ path('home_client') }}" method="get">
+    <button type="submit">Se connecter</button>
+            </form>
+
+            <!-- Intégration de l'authentification sociale -->
+<div class="social-buttons">
+    <!-- Bouton de connexion Google -->
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    <!-- Bouton de connexion Facebook -->
+    <a href="#" class="social-button">Facebook</a>
+    <!-- Bouton de connexion Twitter -->
+    <a href="#" class="social-button">Twitter</a>
+</div>
+            <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" data-client_id="474281235790-2uco7ih5tbmn2ouc0226pdquh77mtq57.apps.googleusercontent.com" data-api_key="AIzaSyArbfqFpqtkjWlfaLruW5b9UiiZSE4bJdc"></div>
+        </form>
+        <!-- Lien vers la page d'inscription -->
+        <p>Vous n'avez pas de compte ? <a href="{{ path('signin') }}">S'inscrire</a></p>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Fonction appelée lorsque la connexion Google Sign-In réussit
+        function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            console.log('ID: ' + profile.getId()); // Ne pas supprimer cette ligne.
+            console.log('Full Name: ' + profile.getName());
+            console.log('Given Name: ' + profile.getGivenName());
+            console.log('Family Name: ' + profile.getFamilyName());
+            console.log('Image URL: ' + profile.getImageUrl());
+            console.log('Email: ' + profile.getEmail());
+            // Vous pouvez ajouter d'autres actions ici, comme l'envoi des données de profil à votre backend pour l'authentification.
+        }
+    </script>
+</body>
+</html>

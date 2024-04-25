@@ -1,3 +1,16 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+index:
+    path: /
+    controller: App\Controller\DefaultController::index
+
+app_modifier:
+    path: /centre/modifier/{nom_centre}
+    controller: 'App\Controller\CentreController::modifier'
+    methods: ['GET', 'POST']
+
+login:
+    path: /login
+    controller: 'App\Controller\HomeController::login'
+
+home_client:
+    path: /homeClient
+    controller: 'App\Controller\HomeController::homeClient'
