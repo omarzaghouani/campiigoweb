@@ -4,10 +4,10 @@ namespace App\Entity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UtilisateurRepository;
-
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UtilisateurRepository::class)]
-class Utilisateur
+class Utilisateur implements UserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -155,6 +155,34 @@ class Utilisateur
         $this->actif = $actif;
 
         return $this;
+    }
+    public function getRoles(): array
+    {
+        // Logique pour récupérer les rôles de l'utilisateur
+        return ['ROLE_USER']; // Par exemple, retourner un rôle par défaut
+    }
+
+    public function getPassword(): ?string
+    {
+        // Logique pour récupérer le mot de passe de l'utilisateur
+        return $this->motdepasse; // Retourner le mot de passe stocké dans l'entité
+    }
+
+    public function getSalt(): ?string
+    {
+        // Vous n'avez pas besoin de sel si vous utilisez l'algorithme bcrypt pour le hachage du mot de passe
+        return null;
+    }
+
+    public function getUsername(): string
+    {
+        // Logique pour récupérer le nom d'utilisateur de l'utilisateur
+        return $this->email; // Retourner l'email comme nom d'utilisateur
+    }
+
+    public function eraseCredentials()
+    {
+        // Supprimer les données sensibles de l'utilisateur, si nécessaire
     }
 
 

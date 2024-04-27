@@ -59,15 +59,17 @@
     <!-- Inclure le SDK Google Sign-In -->
     <script src="https://apis.google.com/js/platform.js" async defer></script>
         <h1>Se connecter</h1> <!-- Titre centré -->
-        <form action="{{ path('login') }}" method="post">
-            <!-- Champs du formulaire -->
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-            <label for="password">Mot de passe:</label>
-            <input type="password" id="password" name="password" required>
+       <form action="{{ path('login') }}" method="post">
+    <!-- Champs du formulaire -->
+    <label for="email">Email:</label>
+ <input type="email" id="email" name="_username" placeholder="Email" required>
+     <label for="password">Mot de passe:</label>
+    <input type="password" id="password" name="_password" required>
+    <input type="checkbox" name="_remember_me" />
+    <!-- Bouton de connexion-->
             <!-- Bouton de connexion-->
            <form action="{{ path('home_client') }}" method="get">
-    <button type="submit">Se connecter</button>
+      <button type="submit">Se connecter</button>
             </form>
 
             <!-- Intégration de l'authentification sociale -->

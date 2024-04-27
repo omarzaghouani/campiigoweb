@@ -11,6 +11,10 @@ login:
     path: /login
     controller: 'App\Controller\HomeController::login'
 
+logout:
+    path: /logout
+    controller: App\Controller\HomeController::logout
+    
 home_client:
     path: /homeClient
     controller: 'App\Controller\HomeController::homeClient'
