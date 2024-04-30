@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Add your head content here -->
+</head>
+<body>
+    <div class="container">
+        <div class="form-card1">
+            <div class="form-card2">
+                <div class="card">
+                    <div class="card-header">
+                        <h1 class="welcome-line-1">Modifier la Location</h1>
+                    </div>
+                    <div class="card-body">
+                        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+                        <form action="{{ path('app_location_modifier', {'id': location.id}) }}" method="POST" enctype="multipart/form-data">
+                            {{ form_widget(form) }}
+                            <button type="submit" class="submit-button">Modifier</button>
+                            <a href="{{ path('app_location_afficher') }}" class="submit-button">Annuler</a>
+                        </form>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

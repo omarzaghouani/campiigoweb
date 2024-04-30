@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="table_location-container">
+        <table class="location-table">
+            <thead>
+            <tr>
+                <th>Date Emprunt</th>
+                <th>Date Fin</th>
+                <th>CIN Utilisateur</th>
+                <th>Équipement</th>
+                <th>Nombre d'Équipements</th>
+                <th>Coût</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for location in locations %}
+                <tr>
+                    <td>{{ location.dateEmprunt|date('Y-m-d') }}</td>
+                    <td>{{ location.dateFin|date('Y-m-d') }}</td>
+                    <td>{{ location.cinUtil }}</td>
+                    <td>{{ location.equip }}</td>
+                    <td>{{ location.nbrequipements }}</td>
+                    <td>{{ location.cout }}</td>
+                    <td>
+                        <a href="{{ path('app_location_supprimer', {'id_location': location.idLoc}) }}" class="btn btn-danger">Supprimer</a>
+                        <a href="{{ path('app_modifier', {'libelle': location.equip}) }}" class="btn btn-primary">Modifier</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <a href="{{ path('app_ajouter') }}" class="btn btn-success">Ajouter une location</a>
+{% endblock %}

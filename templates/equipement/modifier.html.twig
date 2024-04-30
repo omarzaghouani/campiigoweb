@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier la Location{% endblock %}
+
+{% block body %}
+    <h1>Modifier la Location</h1>
+
+    <form action="{{ path('app_modifier', {'id': location.idLoc}) }}" method="POST" enctype="multipart/form-data">
+        {{ form_start(form) }}
+        {{ form_row(form.dateEmprunt) }}
+        {{ form_row(form.dateFin) }}
+        {{ form_row(form.cinUtil) }}
+        {{ form_row(form.equip) }}
+        {{ form_row(form.nbrequipements) }}
+        {{ form_row(form.cout) }}
+        <button type="submit" class="btn btn-primary">Modifier</button>
+        <a href="{{ path('app_afficher') }}" class="btn btn-secondary">Annuler</a>
+        {{ form_end(form) }}
+    </form>
+{% endblock %}

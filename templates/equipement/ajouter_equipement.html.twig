@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer un nouvel équipement{% endblock %}
+
+
+{% block body %}
+    <div class="container">
+        <div class="form-card1">
+            <div class="form-card2">
+                <div class="card">
+                    <div class="card-header">
+                        <h1 class="welcome-line-1">Equipement</h1>
+                    </div>
+                    <div class="card-body">
+                        {{ form_start(form) }}
+
+                        {{ form_row(form.libelle, {
+                            'attr': {
+                                'class': 'form-control',
+                                'placeholder': 'Libellé',
+                            }
+                        }) }}
+
+                        {{ form_row(form.categorie, {
+                            'attr': {
+                                'class': 'form-control',
+                                'placeholder': 'Catégorie',
+                            }
+                        }) }}
+
+                        {{ form_row(form.prix, {
+                            'attr': {
+                                'class': 'form-control',
+                                'placeholder': 'Prix',
+                            }
+                        }) }}
+
+                        {{ form_row(form.nbrUnite, {
+                            'attr': {
+                                'class': 'form-control',
+                                'placeholder': 'Nombre d\'unités',
+                            }
+                        }) }}
+
+
+
+                        <button type="submit" class="submit-button">Creer</button>
+<a href="{{ path('app_afficher_eq') }}" class="submit-button">Annuler</a>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

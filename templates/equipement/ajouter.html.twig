@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer une nouvelle location{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .container {
+            justify-content: center;
+            margin-top: 100px;
+        }
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            max-width: 200px;
+            margin: 0 auto;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .submit-button {
+            background-color: #007bff;
+            color: white;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="form-card1">
+            <div class="form-card2">
+                <div class="card">
+                    <div class="card-header">
+                        <h1 class="welcome-line-1">Location</h1>
+                    </div>
+                    <div class="card-body">
+                        {{ form_start(form) }}
+
+                        {{ form_row(form.dateEmprunt, {
+                            'attr': {
+                                'class': 'form-control',
+                                'placeholder': 'Date d\'emprunt',
+                            }
+                        }) }}
+
+                        {{ form_row(form.dateFin, {
+                            'attr': {
+                                'class': 'form-control',
+                                'placeholder': 'Date de fin',
+                            }
+                        }) }}
+
+                        {{ form_row(form.cinUtil, {
+                            'attr': {
+                                'class': 'form-control',
+                                'placeholder': 'CIN Utilisateur',
+                            }
+                        }) }}
+
+                        {{ form_row(form.equip, {
+                            'attr': {
+                                'class': 'form-control',
+                                'placeholder': 'Équipement',
+                            }
+                        }) }}
+
+                        {{ form_row(form.nbrequipements, {
+                            'attr': {
+                                'class': 'form-control',
+                                'placeholder': 'Nombre d\'équipements',
+                            }
+                        }) }}
+
+                        {{ form_row(form.cout, {
+                            'attr': {
+                                'class': 'form-control',
+                                'placeholder': 'Coût',
+                            }
+                        }) }}
+
+                        <button type="submit" class="submit-button">Créer</button>
+
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

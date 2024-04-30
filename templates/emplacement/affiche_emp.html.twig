@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}<title>Emplacement</title>{% endblock %}
+
+{% block body %}
+   <div class="table_centre-container">
+        <div class="search-sort-container">
+            <form action="{{ path('app_afficheremp') }}" method="get" class="search-form">
+                <input type="text" name="search" placeholder="Search by Centre Name" value="{{ searchTerm }}" />
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+            <a href="{{ path('app_afficheremp', {'sort_by': 'disponibilite'}) }}" class="btn btn-primary">Sort by Disponibilité</a>
+        </div>
+        <table class="centre-table">
+            <thead>
+                <tr>
+                    <th>Id Emplacement</th>
+                    <th>Superficie</th>
+                    <th>Disponibilité</th>
+                    <th>Centre</th>
+                    <!-- Add more columns as needed -->
+                    <th>Actions</th>
+                    <th>QR Code</th> <!-- Add a new column for QR code -->
+                </tr>
+            </thead>
+            <tbody>
+                {# Display emplacement #}
+                {% for emplacement in emplacement %}
+                    <tr>
+                        <td>{{ emplacement.getIdemplacement() }}</td>
+                        <td>{{ emplacement.getSuperficie() }}</td>
+                        <td>{{ emplacement.getDisponibilite() }}</td>
+                        <td>{{ emplacement.getCentre().getNomCentre() }}</td>
+                        <td>
+                            <a href="{{ path('app_emp_edit', {'idemplacement': emplacement.getIdemplacement()}) }}" class="btn">Modifier</a>
+                            <a href="{{ path('app_emplacement_supprimer', {'id_emplacement': emplacement.getIdemplacement()}) }}" class="btn btn-danger">Supprimer</a>
+                        </td>
+                        <td>
+                            <div class="qr-code-container">
+                                {% set qrCodeUrl = 'https://' ~ emplacement.getCentre().getNomCentre() ~ '.com' %}
+                                <a href="{{ qrCodeUrl }}">
+                                    <img src="{{ generateQrCode(qrCodeUrl) }}" alt="QR Code">
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div>
+            <a href="{{ path('app_ajouteremp') }}" class="btn btn-large btn-primary">Ajouter Emplacement</a>
+        </div>
+    </div>
+{% endblock %}

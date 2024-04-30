@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+     <div class="table_centre-container">
+        <table class="centre-table">
+            <thead>
+                <tr>
+                   <th>Libellé</th>
+                    <th>Catégorie</th>
+                    <th>Prix</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                 {% for equipement in equipements %}
+                    <tr>
+                        <td>{{ equipement.libelle }}</td>
+                        <td>{{ equipement.categorie }}</td>
+                        <td>{{ equipement.prix }}</td>
+                        <td>
+                           <a href="{{ path('app_equipement_supprimer', {'id_equipement': equipement.getIdEquipement()}) }}" class="btn btn-danger">Supprimer</a>
+                            <a href="{{ path('app_modifier_eq', {'libelle': equipement.libelle}) }}" class="btn btn-primary">Modifier</a>
+                        </td>
+                    
+                    </tr>
+                
+                {% endfor %}
+            </tbody>
+        </table>
+         <div>
+                  <a href="{{ path('app_ajouter_eq') }}" class="btn btn-large">Ajouter un équipement</a>
+
+                    </div>
+    </div>
+  
+{%endblock%}
