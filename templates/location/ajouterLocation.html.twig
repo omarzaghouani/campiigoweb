@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}<title>Create New Location</title>{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="form-card1">
+            <div class="form-card2">
+                <div class="card">
+                    <div class="card-header">
+                        <h1 class="welcome-line-1">Location</h1>
+                    </div>
+                    <div class="card-body">
+                        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+                        {{ form_row(form.dateEmprunt, {
+                            'attr': {
+                                'class': 'form-control',
+                                'placeholder': 'Date Emprunt'
+                            }
+                        }) }}
+
+                        {{ form_row(form.dateFin, {
+                            'attr': {
+                                'class': 'form-control',
+                                'placeholder': 'Date Fin'
+                            }
+                        }) }}
+
+                        {{ form_row(form.cinUtil, {
+                            'attr': {
+                                'class': 'form-control',
+                                'placeholder': 'CIN Utilisateur'
+                            }
+                        }) }}
+
+                        {{ form_row(form.equip, {
+                            'attr': {
+                                'class': 'form-control',
+                                'placeholder': 'Equipement'
+                            }
+                        }) }}
+
+                        {{ form_row(form.nbrequipements, {
+                            'attr': {
+                                'class': 'form-control',
+                                'placeholder': 'Nombre d\'équipements'
+                            }
+                        }) }}
+
+                        {{ form_row(form.cout, {
+                            'attr': {
+                                'class': 'form-control',
+                                'placeholder': 'Coût'
+                            }
+                        }) }}
+
+                        <button type="submit" class="submit-button">Create</button>
+                        <a href="{{ path('app_location_afficher') }}" class="submit-button">Cancel</a>
+
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}<title>Locations</title>{% endblock %}
+
+{% block body %}
+    <div class="table-container">
+        <table class="location-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>User ID</th>
+                    <th>Equipment</th>
+                    <th>Number of Equipments</th>
+                    <th>Cost</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for location in locations %}
+                    <tr>
+                        <td>{{ location.getIdLoc() }}</td>
+                        <td>{{ location.getDateEmprunt()|date('Y-m-d') }}</td>
+                        <td>{{ location.getDateFin()|date('Y-m-d') }}</td>
+                        <td>{{ location.getCinUtil() }}</td>
+                        <td>{{ location.getEquip() }}</td>
+                        <td>{{ location.getNbrequipements() }}</td>
+                        <td>{{ location.getCout() }}</td>
+                        <td>
+                            <a href="{{ path('app_location_supprimer', {'id': location.getIdLoc()}) }}" class="btn">Delete</a>
+                            <a href="{{ path('app_location_modifier', {'id': location.getIdLoc()}) }}" class="btn">Edit</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div>
+            <a href="{{ path('app_location_ajouter') }}" class="btn btn-large">Add New</a>
+        </div>
+    </div>
+{% endblock %}

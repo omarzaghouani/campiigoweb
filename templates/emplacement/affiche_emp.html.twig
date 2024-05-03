@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}<title> Emplacement</title>{% endblock %}
+
+{% block body %}
+   <div class="table_centre-container">
+        <table class="centre-table">
+            <thead>
+                <tr>
+                    <th>Id Emplacement</th>
+                    <th>Superficie</th>
+                    <th>Disponibilité</th>
+                    <th>centreivité</th>
+                    <!-- Add more columns as needed -->
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for emplacement in emplacement %}
+                    <tr>
+                        <td>{{ emplacement.getIdemplacement() }}</td>
+                        <td>{{ emplacement.getSuperficie() }}</td>
+                        <td>{{ emplacement.getDisponibilite() }}</td>
+                        <td>{{ emplacement.centre }}</td>
+                        <!-- Add more cells as needed -->
+                        <td>
+                        <a href="{{ path('app_emp_edit', {'idemplacement': emplacement.getIdemplacement()}) }}" class="btn">Modifier</a>
+                            <a href="{{ path('app_emplacement_supprimer', {'id_emplacement': emplacement.getIdemplacement()}) }}" class="btn btn-danger">Supprimer</a>
+                            <!-- Add more actions as needed -->
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div>
+            <a href="{{ path('app_ajouteremp') }}" class="btn btn-large btn-primary">Ajouter Emplacement</a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html style="font-size: 16px;" lang="fr"><head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="​Book your outdoor adventure, About Us, ​Find your next getaway, Our Services, ​Plan Your Camping Trip, ​How to plan a camping trip, Contact Us, INTUITIVE">
+    <meta name="description" content="">
+    <title>Accueil</title>
+    <link rel="stylesheet" href="{{ asset('new/nicepage.css')}}" media="screen">
+    <link rel="stylesheet" href="{{ asset('new/Accueil.css')}}" media="screen">
+    <script class="u-script" type="text/javascript" src="{{ asset('new/jquery.js')}}" defer=""></script>
+    <script class="u-script" type="text/javascript" src="{{ asset('new/nicepage.js')}}" defer=""></script>
+    <meta name="generator" content="Nicepage 6.8.9, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster:400|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i|Amarante:400">
+   
+    <script type="application/ld+json">{
+            "@context": "http://schema.org",
+            "@type": "Organization",
+            "name": ""
+}</script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="Accueil">
+    <meta property="og:type" content="website">
+  <meta data-intl-tel-input-cdn-path="intlTelInput/"></head>
+  <body data-home-page="Accueil.html" data-home-page-title="Accueil" data-path-to-root="./" data-include-products="true" class="u-body u-xl-mode" data-lang="fr"><header class="u-clearfix u-header u-valign-top u-header" id="sec-309c"><nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
+        <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
+          <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
+            <svg class="u-svg-link" viewBox="0 0 24 24"><use xlink:href="#menu-hamburger"></use></svg>
+            <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect><rect y="13" width="16" height="2"></rect>
+</g></svg>
+          </a>
+        </div>
+        <div class="u-nav-container">
+          <ul class="u-nav u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="new/Accueil.html" style="padding: 32px 36px;">Accueil</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="new/À-propos-de.html" style="padding: 32px 36px;">À propos de</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="new/Contact.html" style="padding: 32px 36px;">Contact</a>
+</li></ul>
+        </div>
+        <div class="u-nav-container-collapse">
+          <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+            <div class="u-inner-container-layout u-sidenav-overflow">
+              <div class="u-menu-close"></div>
+              <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="new/Accueil.html">Accueil</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="new/À-propos-de.html">À propos de</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="new/Contact.html">Contact</a>
+</li></ul>
+            </div>
+          </div>
+          <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
+        </div>
+      </nav><img class="u-image u-image-contain u-image-default u-image-1" src="new/images/logoCampigo.png" alt="" data-image-width="568" data-image-height="388"></header>
+   
+    <section class="u-align-center u-clearfix u-container-align-center u-custom-color-2 u-section-4" id="carousel_2ab4">
+      <div class="u-container-style u-expanded-width u-group u-image u-shading u-image-1" data-image-width="1620" data-image-height="1080">
+        <div class="u-container-layout u-valign-top u-container-layout-1">
+          <h2 class="u-align-center u-text u-text-default u-text-1"> Nos Centres et Activite</h2>
+        
+
+
+
+
+    <input type="text" name="text"  id="search-input" placeholder="Search " class="input"> 
+    <div class="card-container" style="display: flex; flex-wrap: wrap;">
+        {% for activite in a %}
+        <div class="card" style="margin-right: 10px style="color: black; font-size: 16px;;">
+            <div>
+                <img src="{{ asset('uploads/' ~ activite.centre.photo) }}" alt="Photo du centre" class="centre-photo" width="250" height="200">
+            </div>
+            
+            <div style="margin-top: 10px;">
+                <span class="centre"  ><strong>Centre:</strong> {{ activite.centre.getNomCentre() }}</span>
+            </div>
+            <div>
+                <span class="txt"><strong>Ville:</strong> {{ activite.centre.getVille() }}</span>
+            </div>
+            <div>
+                <span class="txt"><strong>Nom activité:</strong> {{ activite.getNomActivite() }}</span>
+            </div>
+            <div>
+                <span class="txt"><strong>Type:</strong> {{ activite.getType() }}</span>
+            </div>
+            <div>
+                <span class="txt" ><strong>Description:</strong> {{ activite.getDescription() }}</span>
+            </div>
+            <div>
+            <a href="{{ path('app_act_pdf', {'Nom_activite': activite.getNomActivite()}) }}" class="btn"> PDF</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</div>
+</div>
+</section>
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#search-input').on('input', function() {
+        const searchTerm = $(this).val().toLowerCase();
+        $('.card').each(function() {
+            const nomCentre = $(this).find('.centre').text().toLowerCase();
+            const ville = $(this).find('.ville').text().toLowerCase(); // Ajouter la recherche par ville
+            if (nomCentre.includes(searchTerm) || ville.includes(searchTerm)) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    });
+});
+</script>
+
+<section>
+<script>
+function getLocationByIP() {
+    fetch('/map') // Utilisation de l'URL relative
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Erreur lors de la récupération de la localisation par IP');
+        }
+        return response.json();
+    })
+    .then(data => {
+        // Traiter les données de localisation
+        console.log(data); // Affiche les données pour vérification
+        // Ici, vous pouvez utiliser les données pour afficher une carte, par exemple :
+        const { city, country } = data;
+        console.log(`City: ${city}, Country: ${country}`);
+    })
+    .catch(error => {
+        // Gérer les erreurs
+        console.error(error.message);
+    });
+}
+
+// Appeler la fonction pour obtenir l'emplacement par IP
+getLocationByIP();
+</script>
+
+
+
+
+

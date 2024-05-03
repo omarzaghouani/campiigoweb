@@ -21,6 +21,16 @@ class ActiviteRepository extends ServiceEntityRepository
         parent::__construct($registry, Activite::class);
     }
 
+    public function findBySearchTerm($searchTerm)
+    {
+        return $this->createQueryBuilder('a')
+            ->leftJoin('a.centre', 'c')
+            ->andWhere('c.nomCentre LIKE :searchTerm')
+            ->setParameter('searchTerm', '%'.$searchTerm.'%')
+            ->getQuery()
+            ->getResult();
+    }
+    
 //    /**
 //     * @return Activite[] Returns an array of Activite objects
 //     */

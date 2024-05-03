@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chart.js Example</title>
+    <!-- Inclure Chart.js depuis une CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <canvas id="myChart"></canvas>
+
+    {# Stocker les données JSON dans un attribut de données HTML #}
+    <div id="chartData" data-chart-data="{{ chartData|e('html_attr') }}"></div>
+
+    <script>
+        // Récupérer les données JSON depuis l'attribut de données HTML
+        var chartData = JSON.parse(document.getElementById('chartData').dataset.chartData);
+
+        // Création du graphique avec Chart.js
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: chartData.labels,
+                datasets: [{
+                    label: 'Nombre de centres par ville',
+                    data: chartData.data,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{% extends 'basefront.html.twig' %}
+
+{% block title %}Home Client{% endblock %}
+
+{% block content %}
+  <nav>
+    <ul>
+        {% if app.user %}
+            <li>Bienvenue, {{ app.user.nom }} {{ app.user.prenom }}</li>
+            <!-- Autres éléments de la navbar -->
+        {% endif %}
+    </ul>
+</nav>
+    {% block body %}
+        <h1>Bienvenue sur la page d'accueil</h1>
+        <p>Voici les informations de l'utilisateur :</p>
+        <ul>
+
+            <!-- Ajoutez d'autres informations de l'utilisateur si nécessaire -->
+            
+        </ul>
+    {% endblock %}
+{% endblock %}

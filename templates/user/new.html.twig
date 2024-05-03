@@ -1,4 +1,5 @@
 {% extends 'base.html.twig' %}
+
 {% block body %}
 <div class="container">
     <div class="form-card1">
@@ -34,36 +35,30 @@
                             }
                         }) }}
                     
-                        {{ form_row(form.motdepasse, {
+                        {{ form_row(form.plainPassword, {
                             'attr': {
                                 'class': 'form-control'
                             }
                         }) }}
                     
-                        {{ form_row(form.role, {
+                        {{ form_row(form.photoD, {
                             'attr': {
                                 'class': 'form-control'
                             }
                         }) }}
-                   
-                        {{ form_row(form.photo_d, {
-                          'attr': {
-                                'class': 'form-control'
-                            }
-                        }) }}  
 
-                          {{ form_row(form.actif, {
-                          'attr': {
-                                'class': 'form-control'
+                        {{ form_row(form.agreeTerms, {
+                            'label': 'Agree to terms',
+                            'label_attr': {
+                                'class': 'form-check-label'
+                            },
+                            'attr': {
+                                'class': 'form-check-input'
                             }
-                        }) }}  
-                    
-                   
-                    
-                   
+                        }) }}
                     
                     <button type="submit" class="submit-button">Create</button>
-                    <a href="{{ path('user_index')}}" class="submit-button">Annuler</a>
+                    <a class="submit-button">Annuler</a>
                     {{ form_end(form) }}
                 </div>
             </div>

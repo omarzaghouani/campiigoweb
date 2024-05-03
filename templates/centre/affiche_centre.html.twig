@@ -1,14 +1,56 @@
+{# templates/centre/statistics.html.twig #}
+
 {% extends 'base.html.twig' %}
 
-{% block title %}<title> Centre</title>{% endblock %}
-
 {% block body %}
+
+    {# Tableau des centres #}
     <div class="table_centre-container">
         <table class="centre-table">
+              <form action="{{ path('app_afficher') }}" method="GET">
+                <label for="ville">Filtrer par ville :</label>
+                <select name="ville" id="ville">
+                <option value="">Toutes les villes</option>
+    <option value="Tunis">Tunis</option>
+    <option value="Ariana">Ariana</option>
+    <option value="Manouba">Manouba</option>
+    <option value="Bizerte">Bizerte</option>
+    <option value="Jendouba">Jendouba</option>
+    <option value="Beja">Beja</option>
+    <option value="Kef">Kef</option>
+    <option value="Sousse">Sousse</option>
+    <option value="Monastir">Monastir</option>
+    <option value="Kaierouan">Kaierouan</option>
+    <option value="Gasrine">Gasrine</option>
+    <option value="Sfax">Sfax</option>
+    <option value="Tataouin">Tataouin</option>
+    <option value="Mednine">Mednine</option>
+    <option value="Jerba">Jerba</option>
+    <option value="Gabes">Gabes</option>
+    <option value="Mahdia">Mahdia</option>
+    <option value="Nabeul">Nabeul</option>
+    <option value="Gafsa">Gafsa</option>
+    <option value="Tozeur">Tozeur</option>
+    <option value="Sidi bouzid">Sidi bouzid</option>
+    <option value="Zaghouen">Zaghouen</option>
+    <option value="Kebili">Kebili</option>
+    <option value="Hamamet">Hamamet</option>
+²
+                </select>
+                  <label for="tri">Trier par :</label>
+                 <select name="tri" id="tri">
+                 <option value="nom_asc">Nom ascendant</option>
+                <option value="nom_desc">Nom descendant</option>
+                 <option value="mail_asc">mail ascendant</option>
+                <option value="mail_desc">mail descendant</option>
+                </select>
+               <button  class="button_search" >Search</button>
+  
+            </form>
             <thead>
                 <tr>
-                    <th>Id </th>
-                    <th>Nom </th>
+                    <th>Id</th>
+                    <th>Nom</th>
                     <th>Ville</th>
                     <th>Mail</th>
                     <th>Numéro</th>
@@ -18,31 +60,30 @@
                 </tr>
             </thead>
             <tbody>
-                {% for centre in c %}
+                {% for centre in resultats %}
                     <tr>
-                        <td>{{ centre.getId_centre() }}</td>
-                        <td>{{ centre.getNomCentre() }}</td>
-                        <td>{{ centre.getVille() }}</td>
-                        <td>{{ centre.getMail() }}</td>
-                        <td>{{ centre.getNumTel() }}</td>
-                        <td>{{ centre.getNbreActivite() }}</td>
+                        <td>{{ centre.id_centre }}</td>
+                        <td>{{ centre.getNomCentre }}</td>
+                        <td>{{ centre.ville }}</td>
+                        <td>{{ centre.mail }}</td>
+                        <td>{{ centre.numTel }}</td>
+                        <td>{{ centre.nbreActivite }}</td>
                         <td>
-                            <img src="{{ asset('uploads/' ~ centre.getPhoto()) }}" alt="Photo du centre" class="centre-photo" width="100" height="100">
+                            <img src="{{ asset('uploads/' ~ centre.photo) }}" alt="Photo du centre" class="centre-photo" width="100" height="100">
                         </td>
                         <td>
-                            <a href="{{ path('app_centre_supprimer', {'id_centre': centre.getId_centre()}) }}" class="btn ">Supprimer</a>
-                            <a href="{{ path('app_modifier', {'nom_centre': centre.getNomCentre()}) }}" class="btn">Modifier</a>
+                            <a href="{{ path('app_centre_supprimer', {'id_centre': centre.getId_centre}) }}" class="btn">Supprimer</a>
+                            <a href="{{ path('app_modifier', {'nom_centre': centre.getNomCentre}) }}" class="btn">Modifier</a>
+                            <a href="{{ path('centre_statistics') }}" class="btn ">Statistiques</a> {# Ajout du lien vers l'interface des statistiques #}
                         </td>
-                    
                     </tr>
-                
                 {% endfor %}
             </tbody>
         </table>
-         <div>
-                    <a href="{{ path('app_ajouter') }}" class="btn btn-large">Ajouter </a>
-
-                    </div>
+        <div>
+            
+            <a href="{{ path('app_ajouter') }}" class="btn btn-large">Ajouter</a>
+        </div>
     </div>
-  
+
 {% endblock %}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Centre - {{ activite.getNomActivite() }}</title>
+    <style>
+        /* Define styles for table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        /* Define alternating row colors */
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .centre-photo {
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+  <img src="{{ asset('./images/8ad73f3c.jpeg') }}">
+
+    <table>
+        <tr>
+            <th>Attribute</th>
+            <th>Value</th>
+        </tr>
+        <tr>
+            <td><strong>Nom du centre</strong></td>
+            <td>{{ activite.centre }}</td>
+        </tr>
+        <tr>
+            <td><strong>Ville</strong></td>
+            <td>{{ activite.centre.getVille() }}</td>
+        </tr>
+        <tr>
+            <td><strong>Nom de l'activité</strong></td>
+            <td>{{ activite.getNomActivite() }}</td>
+        </tr>
+        <tr>
+            <td><strong>Type</strong></td>
+            <td>{{ activite.getType() }}</td>
+        </tr>
+        <tr>
+            <td><strong>Description</strong></td>
+            <td>{{ activite.getDescription() }}</td>
+        </tr>
+    </table>
+</body>
+</html>

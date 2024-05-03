@@ -35,14 +35,22 @@ class CentreRepository extends ServiceEntityRepository
 //            ->getResult()
 //        ;
 //    }
+public function rechercheParVille($ville)
+{
+    return $this->createQueryBuilder('e')
+        ->andWhere('e.ville = :ville')
+        ->setParameter('ville', $ville)
+        ->getQuery()
+        ->getResult();
+}
+public function getStatisticsByCity(): array
+{
+    $qb = $this->createQueryBuilder('c')
+        ->select('c.ville, COUNT(c) as centreCount')
+        ->groupBy('c.ville')
+        ->getQuery();
 
-//    public function findOneBySomeField($value): ?Centre
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    return $qb->getResult();
+}
+
 }

@@ -1,13 +1,15 @@
 <?php
 
 namespace App\Entity;
+
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UtilisateurRepository;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UtilisateurRepository::class)]
-class Utilisateur implements UserInterface
+class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -16,60 +18,49 @@ class Utilisateur implements UserInterface
 
     #[Assert\NotBlank(message: "Le champ Nom ne doit pas être vide")]
     #[ORM\Column(length: 255)]
-    private ? string $nom;
+    private ?string $nom;
 
     #[Assert\NotBlank(message: "Le champ prenom ne doit pas être vide")]
     #[ORM\Column(length: 255)]
-    private ? string $prenom;
+    private ?string $prenom;
 
     #[Assert\NotBlank(message: "Le champ Num ne doit pas être vide")]
     #[Assert\Regex(
         pattern: '/^\d{8}$/',
-        message: "Invalide. il doit contenir 8 nombre."
+        message: "Invalide. Il doit contenir 8 chiffres."
     )]
     #[ORM\Column(length: 255)]
-    private ? int $numerodetelephone;
+    private ?int $numerodetelephone;
 
     #[Assert\NotBlank(message: "Le champ Email ne doit pas être vide")]
     #[Assert\Email(message: "Le champ Email doit être une adresse email valide")]
     #[ORM\Column(length: 255)]
-    private ? string $email;
+    private ?string $email;
 
-    #[Assert\NotBlank(message: "Le champ Nom_centre ne doit pas être vide")]
+    #[Assert\NotBlank(message: "Le champ mot de passe ne doit pas être vide")]
     #[ORM\Column(length: 255)]
-    private ? string $motdepasse;
+    private ?string $password = null;
+
+    #[ORM\Column]
+    private array $roles = [];
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $photo_d = null;
 
     
-    #[Assert\NotBlank(message: "Le champ Nom_centre ne doit pas être vide")]
-    #[ORM\Column(length: 255)] 
-    private ? string $role = '';
-
-    #[ORM\Column(length: 255)]
-    private ? string $photo_d = null;
-
-   
-    #[Assert\NotBlank(message: "Le champ actif ne doit pas être vide")]
-    #[ORM\Column(length: 255)]
-    private bool $actif = false; 
-
-
-   
-
 
     public function getId(): ?int
     {
         return $this->id;
     }
-
     public function getNom(): ?string
     {
         return $this->nom;
     }
 
-    public function setNom(string $nom): static
+    public function setNom(string $nom): self
     {
         $this->nom = $nom;
-
         return $this;
     }
 
@@ -78,10 +69,9 @@ class Utilisateur implements UserInterface
         return $this->prenom;
     }
 
-    public function setPrenom(string $prenom): static
+    public function setPrenom(string $prenom): self
     {
         $this->prenom = $prenom;
-
         return $this;
     }
 
@@ -90,10 +80,9 @@ class Utilisateur implements UserInterface
         return $this->numerodetelephone;
     }
 
-    public function setNumerodetelephone(int $numerodetelephone): static
+    public function setNumerodetelephone(int $numerodetelephone): self
     {
         $this->numerodetelephone = $numerodetelephone;
-
         return $this;
     }
 
@@ -102,34 +91,35 @@ class Utilisateur implements UserInterface
         return $this->email;
     }
 
-    public function setEmail(string $email): static
+    public function setEmail(string $email): self
     {
         $this->email = $email;
-
         return $this;
     }
 
-    public function getMotdepasse(): ?string
+    public function getPassword(): string
     {
-        return $this->motdepasse;
+        return $this->password;
     }
 
-    public function setMotdepasse(string $motdepasse): static
+    public function setPassword(string $password): self
     {
-        $this->motdepasse = $motdepasse;
-
+        $this->password = $password;
         return $this;
     }
 
-    public function getRole(): ?string
+    public function getRoles(): array
     {
-        return $this->role;
+        $roles = $this->roles;
+        if (empty($roles)) {
+            $roles[] = 'ROLE_USER';
+        }
+        return array_unique($roles);
     }
 
-    public function setRole(string $role): static
+    public function setRoles(array $roles): self
     {
-        $this->role = $role;
-
+        $this->roles = $roles;
         return $this;
     }
 
@@ -138,52 +128,31 @@ class Utilisateur implements UserInterface
         return $this->photo_d;
     }
 
-    public function setPhotoD(string $photo_d): static
+    public function setPhotoD(?string $photo_d): self
     {
         $this->photo_d = $photo_d;
-
         return $this;
     }
 
-    public function isActif(): ?bool
+    
+
+    public function getUserIdentifier(): string
     {
-        return $this->actif;
+        return (string) $this->email;
     }
 
-    public function setActif(?bool $actif): static
-    {
-        $this->actif = $actif;
+    public function getUsername(): string
+{
+    return (string) $this->getUserIdentifier(); // This returns the email as the user identifier.
+}
 
-        return $this;
-    }
-    public function getRoles(): array
+    public function eraseCredentials(): void
     {
-        // Logique pour récupérer les rôles de l'utilisateur
-        return ['ROLE_USER']; // Par exemple, retourner un rôle par défaut
-    }
-
-    public function getPassword(): ?string
-    {
-        // Logique pour récupérer le mot de passe de l'utilisateur
-        return $this->motdepasse; // Retourner le mot de passe stocké dans l'entité
+        // Intentionally left blank
     }
 
     public function getSalt(): ?string
     {
-        // Vous n'avez pas besoin de sel si vous utilisez l'algorithme bcrypt pour le hachage du mot de passe
-        return null;
+        return null; // Not necessary if you're using a modern algorithm like bcrypt or argon2
     }
-
-    public function getUsername(): string
-    {
-        // Logique pour récupérer le nom d'utilisateur de l'utilisateur
-        return $this->email; // Retourner l'email comme nom d'utilisateur
-    }
-
-    public function eraseCredentials()
-    {
-        // Supprimer les données sensibles de l'utilisateur, si nécessaire
-    }
-
-
 }

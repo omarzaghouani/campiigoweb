@@ -293,7 +293,7 @@
                             <h1 class="welcome-line-1">Centre</h1>
                         </div>
                         <div class="card-body">
-                        {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+              {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
                             <form action="{{ path('app_modifier', {'nom_centre': c.getNomCentre}) }}" method="POST" enctype="multipart/form-data">
                                 
                                 {{ form_row(form.nom_centre, {'attr': {'class': 'form-control'}}) }}

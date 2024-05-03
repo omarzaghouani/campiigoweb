@@ -2988,4 +2988,16 @@
   .u-section-11 .u-image-1 {
     min-height: 239px;
   }
+
+
+  .section-with-background {
+    position: relative;
+    background-image: url('chemin/vers/votre/image.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 50px; /* Ajustez la marge intérieure selon vos besoins */
+}
+
+
+
 }

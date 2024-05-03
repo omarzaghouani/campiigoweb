@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ asset('profile/fonts/icomoon/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('profile/css/owl.carousel.min.css') }}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ asset('profile/css/bootstrap.min.css') }}">
+    <!-- Style -->
+    <link rel="stylesheet" href="{{ asset('profile/css/style.css') }}">
+    <title>Modifier profile pour {{ app.user.prenom }}</title>
+</head>
+<body>
+<div class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 order-md-2">
+                <img src="{{ asset('uploads/' ~ app.user.photoD) }}" alt="Image" class="img-fluid">
+            </div>
+            <div class="col-md-6 contents">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="mb-4">
+                            <h1>Modifier profile de {{ app.user.nom }}</h1>
+                            <h3>Bonjour, {{ app.user.nom }}<strong> {{ app.user.prenom }}!</strong></h3>
+                            <h4 class="mb-4">Votre mail: <strong>{{ app.user.email }}</strong></h4>
+                            <h4 class="mb-4">Numero de telephone: <strong>{{ app.user.numerodetelephone }}</strong>
+                            </h4>
+                        </div>
+                        {{ form_start(form) }}
+                        <div class="form-group first">
+                            {{ form_label(form.nom) }}
+                            {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.prenom) }}
+                            {{ form_widget(form.prenom, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.email) }}
+                            {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.numerodetelephone) }}
+                            {{ form_widget(form.numerodetelephone, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                       
+                        <div class="form-group">
+                            {{ form_label(form.photoD, 'Profile Picture') }}
+                            {{ form_widget(form.photoD, {'attr': {'class': 'form-control-file'}}) }}
+                        </div>
+                        
+
+                        <input type="submit" value="Modifier" class="btn text-white btn-block btn-primary">
+                        {{ form_end(form) }}
+
+                        <form action="{{ path('home_client') }}">
+                            <button type="submit" class="btn btn-block btn-warning">Retour</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{{ asset('profile/js/jquery-3.3.1.min.js') }}"></script>
+<script src="{{ asset('profile/js/popper.min.js') }}"></script>
+<script src="{{ asset('profile/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('profile/js/main.js') }}"></script>
+</body>
+</html>

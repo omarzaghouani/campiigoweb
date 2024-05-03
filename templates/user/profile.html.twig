@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{asset('profile/fonts/icomoon/style.css')}}">
+
+    <link rel="stylesheet" href="{{asset('profile/css/owl.carousel.min.css')}}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{asset('profile/css/bootstrap.min.css')}}">
+    
+    <!-- Style -->
+    <link rel="stylesheet" href="{{asset('profile/css/style.css')}}">
+
+    <title>{{app.user.prenom}}</title>
+  </head>
+  <body>
+  
+
+  
+  <div class="content">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 order-md-2">
+          <img src="{{asset('uploads/' ~ app.user.photoD)}}" alt="Image" class="img-fluid">
+        </div>
+        <div class="col-md-6 contents">
+          <div class="row justify-content-center">
+            <div class="col-md-8">
+              <div class="mb-4">
+              <h1>Votre profile</h1>
+              <h3>Bonjour, {{app.user.nom}}<strong> {{app.user.prenom}}!</strong></h3>
+              <h4 class="mb-4">Votre mail: <strong>{{app.user.email}}</strong></h4>
+              <h4 class="mb-4">Numero de telephone: <strong>{{app.user.numerodetelephone}}</strong></h4>
+            </div>
+
+        <form action="{{ path('profile_edit', {'id' : app.user.id}) }}" method="POST">
+    <button type="submit" class="btn btn-block btn-success">Modifier profile</button>
+</form>
+<br>
+<form action="{{ path('home_client') }}">
+    <button type="submit" class="btn btn-block btn-warning">Go back</button>
+</form>
+
+
+            
+            </div>
+          </div>
+          
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  
+    <script src="{{asset('profile/js/jquery-3.3.1.min.js')}}"></script>
+    <script src="{{asset('profile/js/popper.min.js')}}"></script>
+    <script src="{{asset('profile/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('profile/js/main.js')}}"></script>
+  </body>
+</html>
