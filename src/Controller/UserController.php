@@ -2,8 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Utilisateur;
-use App\Form\UtilisateurFormType;
 use App\Form\UserEditType;
 
 use App\Entity\User;
@@ -14,7 +12,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Doctrine\ORM\EntityManagerInterface;
-use App\Repository\UtilisateurRepository;
 use App\Repository\UserRepository;
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -23,12 +20,11 @@ use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
 
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Dompdf\Dompdf;
-
+//SLOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOW
 //use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 class UserController extends AbstractController
 {
-    
 
 #[Route('/users', name: 'user_index')]
 public function index(Request $request, UserRepository $utilisateurRepository, EntityManagerInterface $em): Response
@@ -230,7 +226,10 @@ public function editUser(Request $request, User $user, EntityManagerInterface $e
                 $newFilename = uniqid() . '.' . $profilePicture->guessExtension();
                 $profilePicture->move(
                     "uploads",
-                    $utilisateur->setPhotoD($newFilename)
+                    
+                     $newFilename
+                     //bug kes7a ki fi9t biha hhhhh
+
                 );
                 $user->setPhotoD($newFilename);
             }
@@ -295,17 +294,7 @@ public function editUser(Request $request, User $user, EntityManagerInterface $e
         ]);
     }
 
-    #[Route('/users/{id}', name: 'user_show')]
-    public function show($id, UtilisateurRepository $utilisateurRepository): Response
-    {
-        $utilisateur = $utilisateurRepository->find($id);
-
-        if (!$utilisateur) {
-            throw new NotFoundHttpException('No user found for id ' . $id);
-        }
-
-        return $this->render('user/show.html.twig', ['user' => $utilisateur]);
-    }
+   
 
     #[Route('/modifier/{id}', name: 'modifier')]
     public function edittest(Request $request, Utilisateur $utilisateur, EntityManagerInterface $entityManager): Response
@@ -339,15 +328,5 @@ public function editUser(Request $request, User $user, EntityManagerInterface $e
         ]);
     }
 
-    #[Route('/supprimer/{id}', name: 'delete')]
-    public function delete($id, UtilisateurRepository $utilisateurRepository, EntityManagerInterface $entityManager): Response
-    {
-        $user = $utilisateurRepository->find($id);
-        if ($user) {
-            $entityManager->remove($user);
-            $entityManager->flush();
-        }
-
-        return $this->redirectToRoute('user_index');
-    }
+   
 }

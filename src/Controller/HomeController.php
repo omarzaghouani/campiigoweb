@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Centre;
-
+//hello
 
 class HomeController extends AbstractController
 {
@@ -43,12 +43,14 @@ public function show(): Response
     $centre = $this->getDoctrine()->getRepository(Centre::class)->findAll();
     return $this->render('emplacement/affiche_emp.html.twig', ['emplacement' => $centre]);
 }
-    #[Route('/', name: 'home')]
-    public function index(): Response
-    {
-        // Logique de votre page d'accueil
-        return $this->render('home/index.html.twig');
-    }
+
+#[Route('/', name: 'home')]
+public function index(): Response
+{
+    // Logic for your home page
+    return $this->render('home/index.html.twig');
+}
+
     #[Route('/reset-password', name: 'app_forgot_password_request')]
 public function request(Request $request, MailerInterface $mailer): Response
 {

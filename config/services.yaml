@@ -7,9 +7,6 @@ parameters:
  uploaded_directory: '%kernel.project_dir%/public/uploads'
 
 services:
-    App\EventListener\LoginListener:
-        tags:
-            - { name: kernel.event_subscriber }
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
